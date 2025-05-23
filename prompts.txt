@@ -1,0 +1,43 @@
+Bueno, me vas a ayudar a crear mi página web "MetaNotesHub" desde cero. Es una página donde voy se van a generar notas de trabajo en base a una serie de códigos que se van a ir seleccionando en la página. Quiero que todos los comentarios en el código sean en inglés.
+Primeramente vamos a generar la página principal "index.html" y te voy a ir diciendo de a poco lo que necesito. Para que esté bien ordenado aquí solo vamos a poner código HTML (nada de script ni css).
+Quiero que la página tenga el título MetaNotesHub tanto en la página como en la pestaña. También quiero que tenga un logo.
+Eso por el momento
+
+Ahora quiero que agregues un menú desplegable "Service Type" donde las opciones sean:
+Internet Installation (por defecto)
+Service Change
+Service Request
+
+Tengo esa tabla, primero quiero que esté cada código en ordenado de forma horizontal más o menos como lo que te adjunté. Debes considerar que:
+BXT, TBXT y WF se va poder seleccionar más de 1, así que debería tener un cuadro donde se pueda añadir la cantidad correspondiente
+
+Bien, ahora quiero que abajo de esos códigos haya un botón "Code Table", después vemos que va hacer
+
+Ahora, después de eso quiero que hayan otros inputs:
+Terminal drop length:
+- Placeholder 0
+- Numérico
+House box drop length:
+- Placeholder 0
+- Numérico
+
+Ahora me olvidé de comentarte, quiero que sea responsivo para móviles, no se si esto se hace en el css, js o lo hacemos aquí en el HTML
+
+Que también haya un input "Customer Contact":
+- Numérico
+- Placeholder hhmm (24h)
+
+Abajo de eso que haya un cuadro de texto "Extra Note" con el placeholder "Type your extra note here."
+
+Debajo de eso 2 botones:
+Generar Nota (Que esté en inglés)
+Reset Form
+
+Finalmente abajo de eso un cuadro de Texto "Generated Note"
+No se si esta validación es mejor aquí o en js pero quiero que no se pueda escribir nada ahí. Si es más óptimo en el js omitir esta validación
+
+otra cosa que no se si se valida en el html o js es que quiero que la casilla para ingresar la cantidad en BXT, TBXT o WF solo se habilite si se selecciona esa casilla
+
+Bueno eso sería por el momento en el HTML. Pasemos al CSS
+Quiero que vos agregues los estilos que creas mejor para esta página, no se si tenes que preguntar algo para decidir los colores, etc.
+Además quiero que también esté lo más optimizado posible, que todo esté en el centro de la página y además que esté por defecto como en tema oscuro.

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MetaNotesHub</title>
+    <link
+      rel="icon"
+      href="../assets/MetaNotesHub_logo.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../styles/style.css" />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <header>
+        <h1>MetaNotesHub</h1>
+      </header>
+
+      <main id="note-form">
+        <form>
+          <section data-section="service-type">
+            <h2>Service Type</h2>
+            <select id="service-type" name="service-type">
+              <option value="internet-installation" selected>
+                Internet Installation
+              </option>
+              <option value="service-change">Service Change</option>
+              <option value="service-request">Service Request</option>
+            </select>
+          </section>
+
+          <section data-section="work-codes">
+            <h2>Work Codes</h2>
+
+            <fieldset id="codes-all">
+              <div class="codes-container">
+                <div class="codes-normal">
+                  <label for="NDI"
+                    ><input id="NDI" type="checkbox" name="codes" value="NDI" />
+                    NDI</label
+                  >
+                  <label for="A01"
+                    ><input id="A01" type="checkbox" name="codes" value="A01" />
+                    A01</label
+                  >
+                  <label for="A02"
+                    ><input id="A02" type="checkbox" name="codes" value="A02" />
+                    A02</label
+                  >
+                  <label for="DDC1"
+                    ><input
+                      id="DDC1"
+                      type="checkbox"
+                      name="codes"
+                      value="DDC1"
+                    />
+                    DDC1</label
+                  >
+                  <label for="DDC2"
+                    ><input
+                      id="DDC2"
+                      type="checkbox"
+                      name="codes"
+                      value="DDC2"
+                    />
+                    DDC2</label
+                  >
+                  <label for="DG"
+                    ><input id="DG" type="checkbox" name="codes" value="DG" />
+                    DG</label
+                  >
+                  <label for="DU"
+                    ><input id="DU" type="checkbox" name="codes" value="DU" />
+                    DU</label
+                  >
+                  <label for="ER"
+                    ><input id="ER" type="checkbox" name="codes" value="ER" />
+                    ER</label
+                  >
+                  <label for="MDU1"
+                    ><input
+                      id="MDU1"
+                      type="checkbox"
+                      name="codes"
+                      value="MDU1"
+                    />
+                    MDU1</label
+                  >
+                  <label for="MDU2"
+                    ><input
+                      id="MDU2"
+                      type="checkbox"
+                      name="codes"
+                      value="MDU2"
+                    />
+                    MDU2</label
+                  >
+                  <label for="NTI"
+                    ><input id="NTI" type="checkbox" name="codes" value="NTI" />
+                    NTI</label
+                  >
+                  <label for="OR"
+                    ><input id="OR" type="checkbox" name="codes" value="OR" />
+                    OR</label
+                  >
+                  <label for="OS"
+                    ><input id="OS" type="checkbox" name="codes" value="OS" />
+                    OS</label
+                  >
+                  <label for="S-BORE"
+                    ><input
+                      id="S-BORE"
+                      type="checkbox"
+                      name="codes"
+                      value="S-BORE"
+                    />
+                    S-BORE</label
+                  >
+                  <label for="TC"
+                    ><input id="TC" type="checkbox" name="codes" value="TC" />
+                    TC</label
+                  >
+                  <label for="TCI"
+                    ><input id="TCI" type="checkbox" name="codes" value="TCI" />
+                    TCI</label
+                  >
+                  <label for="TU"
+                    ><input id="TU" type="checkbox" name="codes" value="TU" />
+                    TU</label
+                  >
+                  <label for="2SNI"
+                    ><input
+                      id="2SNI"
+                      type="checkbox"
+                      name="codes"
+                      value="2SNI"
+                    />
+                    2SNI</label
+                  >
+                  <label for="SUNDAYWORK"
+                    ><input
+                      id="SUNDAYWORK"
+                      type="checkbox"
+                      name="codes"
+                      value="SUNDAYWORK"
+                    />
+                    SUNDAYWORK</label
+                  >
+                </div>
+
+                <div class="codes-quantity">
+                  <label for="BXT">
+                    <input id="BXT" type="checkbox" name="codes" value="BXT" />
+                    BXT
+                    <input
+                      type="number"
+                      name="BXT_qty"
+                      min="1"
+                      max="10"
+                      value="1"
+                      disabled
+                    />
+                  </label>
+                  <label for="TBXT">
+                    <input
+                      id="TBXT"
+                      type="checkbox"
+                      name="codes"
+                      value="TBXT"
+                    />
+                    TBXT
+                    <input
+                      type="number"
+                      name="TBXT_qty"
+                      min="1"
+                      max="10"
+                      value="1"
+                      disabled
+                    />
+                  </label>
+                  <label for="WF">
+                    <input id="WF" type="checkbox" name="codes" value="WF" /> WF
+                    <input
+                      type="number"
+                      name="WF_qty"
+                      min="1"
+                      max="10"
+                      value="1"
+                      disabled
+                    />
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </section>
+
+          <div id="code-table-container">
+            <button type="button" id="code-table-btn">View Code Table</button>
+          </div>
+
+          <section data-section="drop-info">
+            <h2>Drop Information</h2>
+            <label for="terminal-drop">Terminal drop length:</label>
+            <input
+              type="number"
+              id="terminal-drop"
+              name="terminal-drop"
+              placeholder="0"
+              min="0"
+              max="2508"
+            />
+
+            <label for="house-drop">House box drop length:</label>
+            <input
+              type="number"
+              id="house-drop"
+              name="house-drop"
+              placeholder="0"
+              min="0"
+            />
+          </section>
+
+          <section data-section="customer-info">
+            <h2>Customer Contact</h2>
+            <label for="contact-time">Contact time:</label>
+            <input
+              type="number"
+              id="contact-time"
+              name="contact-time"
+              placeholder="hhmm (24h)"
+              min="0"
+              max="2359"
+            />
+          </section>
+
+          <section data-section="extra-note">
+            <h2>Extra Note</h2>
+            <textarea
+              id="extra"
+              name="extra"
+              placeholder="Type any additional note here."
+              rows="4"
+              cols="50"
+            ></textarea>
+          </section>
+
+          <div id="form-actions">
+            <button type="button" id="generate-note">Generate Note</button>
+            <button type="reset">Reset Form</button>
+          </div>
+
+          <section data-section="note-output">
+            <h2>Generated Note</h2>
+            <textarea
+              id="note-output"
+              name="note-output"
+              rows="6"
+              cols="50"
+              readonly
+            ></textarea>
+          </section>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
