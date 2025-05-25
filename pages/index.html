@@ -19,7 +19,7 @@
 
       <main id="note-form">
         <form>
-          <section data-section="service-type">
+          <!--<section data-section="service-type">
             <h2>Service Type</h2>
             <div class="bore-inline">
               <label class="bore-label" for="service-type">Service Type:</label>
@@ -31,7 +31,7 @@
                 <option value="service-request">Service Request</option>
               </select>
             </div>
-          </section>
+          </section>-->
 
           <section data-section="work-codes">
             <h2>Work Codes</h2>
@@ -201,6 +201,53 @@
             <button type="button" id="code-table-btn">View Code Table</button>
           </div>
 
+          <section id="ndi-section" class="hidden" data-section="ndi-info">
+            <h2>ONT Information</h2>
+
+            <div class="bore-inline">
+              <label class="bore-label" for="ont-location">ONT location:</label>
+              <input type="text" id="ont-location" />
+            </div>
+
+            <div
+              id="extender-location-container"
+              class="bore-column hidden"
+            ></div>
+
+            <div class="bore-inline">
+              <label class="bore-label" for="ont-type">ONT type:</label>
+              <select id="ont-type">
+                <option value="b2b" selected>B2B</option>
+                <option value="crawl-space">Crawl Space</option>
+                <option value="attic">Attic</option>
+                <option value="white-fiber">White Fiber</option>
+              </select>
+            </div>
+
+            <h2>Light Levels</h2>
+
+            <div class="bore-inline">
+              <label class="bore-label" for="ont-light">ONT Light Level:</label>
+              <input type="number" id="ont-light" maxlength="2" />
+            </div>
+
+            <div class="bore-inline">
+              <label class="bore-label" for="terminal-light"
+                >Terminal Light Level:</label
+              >
+              <input type="number" id="terminal-light" maxlength="2" />
+            </div>
+          </section>
+
+          <section
+            id="tbxt-section"
+            class="hidden section-box"
+            data-section="tbxt-info"
+          >
+            <h2 class="section-title">TBXT Locations</h2>
+            <div id="tbxt-location-container" class="bore-column"></div>
+          </section>
+
           <section data-section="drop-info">
             <h2>Drop Information</h2>
 
@@ -339,12 +386,10 @@
             <div class="bore-inline">
               <label class="bore-label" for="contact-time">Contact time:</label>
               <input
-                type="number"
+                type="text"
                 id="contact-time"
                 name="contact-time"
                 placeholder="hhmm (24h)"
-                min="0"
-                max="2359"
               />
             </div>
             <span class="error-message" id="contact-time-error"></span>

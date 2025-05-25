@@ -22,6 +22,10 @@ export function setupFieldValidations() {
   const boreLengthInput = document.getElementById("bore-length");
   const contactTimeInput = document.getElementById("contact-time");
 
+  contactTimeInput.addEventListener("input", function () {
+    this.value = this.value.replace(/[^0-9]/g, "");
+  });
+
   terminalDropInput.addEventListener("blur", validateDropOnBlur);
   houseDropInput.addEventListener("blur", validateDropOnBlur);
   boreLengthInput.addEventListener("blur", validateBoreLength);
@@ -35,7 +39,7 @@ export function setupFieldValidations() {
     clearError(fieldId);
 
     if (!isNaN(value) && value % 3 !== 0) {
-      showError(fieldId, "Ivalid value.");
+      showError(fieldId, "Invalid value.");
       return;
     }
 
@@ -62,11 +66,40 @@ export function setupFieldValidations() {
   }
 
   function validateContactTime(e) {
-    const val = parseInt(e.target.value, 10);
+    const input = e.target;
+    let digits = input.value.replace(/[^0-9]/g, "");
     clearError("contact-time");
 
-    if (isNaN(val) || val < 0 || val > 2359) {
-      showError("contact-time", "Enter a valid time in hhmm (24h) format.");
+    if (digits.length === 4) {
+      const hours = parseInt(digits.slice(0, 2), 10);
+      const minutes = parseInt(digits.slice(2), 10);
+
+      if (hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59) {
+        input.value = `${digits.slice(0, 2).padStart(2, "0")}:${digits
+          .slice(2)
+          .padStart(2, "0")}`;
+      } else {
+        showError(
+          "contact-time",
+          "Invalid time. Must be between 00:00 and 23:59."
+        );
+      }
+    } else if (digits.length === 3) {
+      const hours = parseInt(digits.charAt(0), 10);
+      const minutes = parseInt(digits.slice(1), 10);
+
+      if (hours >= 0 && hours <= 9 && minutes >= 0 && minutes <= 59) {
+        input.value = `0${digits.charAt(0)}:${digits
+          .slice(1)
+          .padStart(2, "0")}`;
+      } else {
+        showError(
+          "contact-time",
+          "Invalid time. Must be between 00:00 and 23:59."
+        );
+      }
+    } else if (digits.length > 0) {
+      showError("contact-time", "Enter 3 or 4 digits (e.g., 800 or 1230).");
     }
   }
 }

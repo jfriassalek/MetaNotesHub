@@ -80,4 +80,29 @@ right
 left
 back
 
-una cosa más que me estaba olvidando: cuando se seleccion "yes" en bore required, además del bore type se tiene que mostrar "bore legth (ft)" con el placeholder 1 y solo tienen que poder ponerse números de hasta 2 caracteres (entre 1 y 99) 
+una cosa más que me estaba olvidando: cuando se seleccion "yes" en bore required, además del bore type se tiene que mostrar "bore legth (ft)" con el placeholder 1 y solo tienen que poder ponerse números de hasta 2 caracteres (entre 1 y 99)
+
+otra cosa que quiero cambiar es que cuando el usuario ingrese datos no válidos que salga un mensaje de error ahí abajo del input. Algo así
+
+
+Quiero que el contact time se formatee automáticamente al perder el foco. Por ejemplo:
+Si el usuario pone 0800 que se vuelva 08:00
+Si pone 900 que se vuelva 09:00
+si pone 250 que se ponga 02:50
+Decime como se hace y donde tengo que hacerlo, en que script
+
+---NDI---
+sigamos con los códigos, cuando se selecciona NDI debajo de view code table y arriba de drop information tiene que aparecer una sección con lo siguientes inputs:
+ONT location: cuadro de texto
+ONT type: donde tenga una lista desplegable con las opciones sean B2B(por defecto), Crawl Space, Attic, White Fiber
+Abajo de esa sección, otra con los siguientes inputs:
+ONT Light Level: Input numérico de 2 dígitos donde al escribir se ponga un "-" por delante
+Terminal Light Level: Input numérico de 2 dígitos donde al escribir se ponga un "-" por delante
+
+Si está seleccionado NDI y también BXT que se añada abajo de ONT location un input "Extender Location" que también es un input de texto.
+Aquí el tema es que se tienen que añadir la cantidad de inputs seleccionados en la cantidad de BXT. Si la cantidad es 3 se tienen que añadir 3 inputs iguales
+
+creo que con eso cerramos internet installations, ahora pasemos a Service Change.
+Cuando está en Service Change se pueden seleccionar todos los códigos, menos BXT.
+Cuando se selecciona TBXT tiene que aparecer arriba de drop information un input como el de BXT, dependiendo la cantidad de tbxt que se seleccionen
+

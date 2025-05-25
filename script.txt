@@ -1,0 +1,331 @@
+dropInfo.js
+// logic/dropInfo.js
+
+import { showError, clearError } from "./validations.js";
+
+export function setupDropInfo() {
+  const terminalDropInput = document.getElementById("terminal-drop");
+  const houseDropInput = document.getElementById("house-drop");
+  const boreRequiredRadios = document.getElementsByName("bore-required");
+  const dropTypeSelect = document.getElementById("drop-type");
+
+  terminalDropInput.addEventListener("input", () => {
+    updateDropExtras();
+    handleBoreVisibility();
+  });
+
+  terminalDropInput.addEventListener("blur", validateDrop);
+  houseDropInput.addEventListener("blur", validateDrop);
+  dropTypeSelect.addEventListener("change", updateDropExtras);
+
+  boreRequiredRadios.forEach((r) =>
+    r.addEventListener("change", handleBoreRequiredChange)
+  );
+}
+
+function validateDrop(event) {
+  const field = event.target;
+  const fieldId = field.id;
+  const value = parseInt(field.value, 10);
+  const terminalVal = parseInt(
+    document.getElementById("terminal-drop").value,
+    10
+  );
+  const houseVal = parseInt(document.getElementById("house-drop").value, 10);
+
+  clearError(fieldId);
+
+  if (!isNaN(value) && value % 3 !== 0) {
+    showError(fieldId, "Invalid value.");
+    return;
+  }
+
+  if (
+    fieldId === "house-drop" &&
+    !isNaN(terminalVal) &&
+    !isNaN(houseVal) &&
+    terminalVal < houseVal
+  ) {
+    showError(fieldId, "Invalid value.");
+  }
+}
+
+function updateDropExtras() {
+  const terminalVal = parseInt(
+    document.getElementById("terminal-drop").value,
+    10
+  );
+  const dropExtraContainer = document.getElementById("drop-extra-container");
+  const dropLocationLabel = document.getElementById("drop-location-label");
+  const dropTypeSelect = document.getElementById("drop-type");
+
+  if (!isNaN(terminalVal) && terminalVal > 0) {
+    dropExtraContainer.classList.remove("hidden");
+  } else {
+    dropExtraContainer.classList.add("hidden");
+  }
+
+  const type = dropTypeSelect.value;
+  dropLocationLabel.textContent =
+    type === "aerial" ? "Pole location:" : "Flowerpot location:";
+}
+
+function handleBoreVisibility() {
+  const terminalVal = parseInt(
+    document.getElementById("terminal-drop").value,
+    10
+  );
+  const boreContainer = document.getElementById("bore-required-container");
+  const boreTypeContainer = document.getElementById("bore-type-container");
+
+  if (!isNaN(terminalVal) && terminalVal > 0) {
+    boreContainer.classList.remove("hidden");
+  } else {
+    boreContainer.classList.add("hidden");
+    boreTypeContainer.classList.add("hidden");
+  }
+}
+
+function handleBoreRequiredChange() {
+  const selected = [...document.getElementsByName("bore-required")].find(
+    (r) => r.checked
+  )?.value;
+  const boreTypeContainer = document.getElementById("bore-type-container");
+  const boreLengthContainer = document.getElementById("bore-length-container");
+
+  if (selected === "yes") {
+    boreTypeContainer.classList.remove("hidden");
+    boreLengthContainer.classList.remove("hidden");
+  } else {
+    boreTypeContainer.classList.add("hidden");
+    boreLengthContainer.classList.add("hidden");
+  }
+}
+
+
+modal.js
+// logic/modal.js
+
+export function setupModal() {
+  const codeTableModal = document.getElementById("code-table-modal");
+  const codeTableBtn = document.getElementById("code-table-btn");
+  const closeModalBtn = document.getElementById("close-modal");
+
+  codeTableBtn.addEventListener("click", () => {
+    codeTableModal.classList.remove("hidden");
+  });
+
+  closeModalBtn.addEventListener("click", () => {
+    codeTableModal.classList.add("hidden");
+  });
+
+  codeTableModal.addEventListener("click", (e) => {
+    if (e.target === codeTableModal) {
+      codeTableModal.classList.add("hidden");
+    }
+  });
+}
+
+
+serviceType.js
+// logic/serviceType.js
+
+const restrictedCodesForInternetInstallation = [
+  "TU",
+  "DU",
+  "DG",
+  "ER",
+  "OR",
+  "OS",
+  "TC",
+  "TBXT",
+];
+
+export function setupServiceType() {
+  const serviceTypeSelect = document.getElementById("service-type");
+  if (!serviceTypeSelect) return;
+
+  serviceTypeSelect.addEventListener("change", handleServiceTypeChange);
+  handleServiceTypeChange(); // Run on load
+}
+
+function handleServiceTypeChange() {
+  const serviceType = document.getElementById("service-type").value;
+
+  restrictedCodesForInternetInstallation.forEach((codeId) => {
+    const checkbox = document.getElementById(codeId);
+    if (!checkbox) return;
+
+    checkbox.disabled = serviceType === "internet-installation";
+    if (checkbox.disabled) checkbox.checked = false;
+  });
+}
+
+
+validations.js
+// logic/validations.js
+
+export function showError(fieldId, message) {
+  const input = document.getElementById(fieldId);
+  const errorSpan = document.getElementById(`${fieldId}-error`);
+
+  input.classList.add("error");
+  errorSpan.textContent = message;
+}
+
+export function clearError(fieldId) {
+  const input = document.getElementById(fieldId);
+  const errorSpan = document.getElementById(`${fieldId}-error`);
+
+  input.classList.remove("error");
+  errorSpan.textContent = "";
+}
+
+export function setupFieldValidations() {
+  const terminalDropInput = document.getElementById("terminal-drop");
+  const houseDropInput = document.getElementById("house-drop");
+  const boreLengthInput = document.getElementById("bore-length");
+  const contactTimeInput = document.getElementById("contact-time");
+
+  contactTimeInput.addEventListener("input", function () {
+    this.value = this.value.replace(/[^0-9]/g, "");
+  });
+
+  terminalDropInput.addEventListener("blur", validateDropOnBlur);
+  houseDropInput.addEventListener("blur", validateDropOnBlur);
+  boreLengthInput.addEventListener("blur", validateBoreLength);
+  contactTimeInput.addEventListener("blur", validateContactTime);
+
+  function validateDropOnBlur(event) {
+    const field = event.target;
+    const fieldId = field.id;
+    const value = parseInt(field.value, 10);
+
+    clearError(fieldId);
+
+    if (!isNaN(value) && value % 3 !== 0) {
+      showError(fieldId, "Invalid value.");
+      return;
+    }
+
+    const terminalVal = parseInt(terminalDropInput.value, 10);
+    const houseVal = parseInt(houseDropInput.value, 10);
+
+    if (
+      fieldId === "house-drop" &&
+      !isNaN(terminalVal) &&
+      !isNaN(houseVal) &&
+      terminalVal < houseVal
+    ) {
+      showError("house-drop", "Invalid value.");
+    }
+  }
+
+  function validateBoreLength(e) {
+    const val = e.target.value.trim();
+    clearError("bore-length");
+
+    if (val === "" || isNaN(parseInt(val, 10))) {
+      showError("bore-length", "This field is required.");
+    }
+  }
+
+  function validateContactTime(e) {
+    const input = e.target;
+    let digits = input.value.replace(/[^0-9]/g, "");
+    clearError("contact-time");
+
+    if (digits.length === 4) {
+      const hours = parseInt(digits.slice(0, 2), 10);
+      const minutes = parseInt(digits.slice(2), 10);
+
+      if (hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59) {
+        input.value = `${digits.slice(0, 2).padStart(2, "0")}:${digits
+          .slice(2)
+          .padStart(2, "0")}`;
+      } else {
+        showError(
+          "contact-time",
+          "Invalid time. Must be between 00:00 and 23:59."
+        );
+      }
+    } else if (digits.length === 3) {
+      const hours = parseInt(digits.charAt(0), 10);
+      const minutes = parseInt(digits.slice(1), 10);
+
+      if (hours >= 0 && hours <= 9 && minutes >= 0 && minutes <= 59) {
+        input.value = `0${digits.charAt(0)}:${digits
+          .slice(1)
+          .padStart(2, "0")}`;
+      } else {
+        showError(
+          "contact-time",
+          "Invalid time. Must be between 00:00 and 23:59."
+        );
+      }
+    } else if (digits.length > 0) {
+      showError("contact-time", "Enter 3 or 4 digits (e.g., 800 or 1230).");
+    }
+  }
+}
+
+
+workCodes.js
+// logic/workCodes.js
+
+const quantityCodes = ["BXT", "TBXT", "WF"];
+
+export function setupWorkCodes() {
+  quantityCodes.forEach((code) => {
+    const checkbox = document.getElementById(code);
+    if (!checkbox) return;
+
+    checkbox.addEventListener("change", () =>
+      handleQuantityCheckboxChange(checkbox)
+    );
+
+    const input = checkbox.parentElement.querySelector(`input[type="number"]`);
+    if (input) {
+      input.addEventListener("input", enforceQuantityLimits);
+    }
+  });
+}
+
+function handleQuantityCheckboxChange(checkbox) {
+  const input = checkbox.parentElement.querySelector(`input[type="number"]`);
+  if (!input) return;
+
+  if (checkbox.checked) {
+    input.disabled = false;
+    input.value = 1;
+  } else {
+    input.disabled = true;
+    input.value = 0;
+  }
+}
+
+function enforceQuantityLimits(event) {
+  const input = event.target;
+  const value = parseInt(input.value, 10);
+
+  if (value < 1) input.value = 1;
+  if (value > 10) input.value = 10;
+}
+
+
+main.js
+// main.js
+
+import { setupDropInfo } from "./logic/dropInfo.js";
+import { setupModal } from "./logic/modal.js";
+import { setupServiceType } from "./logic/serviceType.js";
+import { setupFieldValidations } from "./logic/validations.js";
+import { setupWorkCodes } from "./logic/workCodes.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  setupDropInfo();
+  setupModal();
+  setupServiceType();
+  setupFieldValidations();
+  setupWorkCodes();
+});
