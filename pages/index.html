@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MetaNotesHub</title>
+    <title>NewMetaNotesHub</title>
     <link
       rel="icon"
       href="../assets/MetaNotesHub_logo.png"
@@ -14,25 +14,27 @@
   <body>
     <div class="main-wrapper">
       <header>
-        <h1>MetaNotesHub</h1>
+        <h1>NewMetaNotesHub</h1>
       </header>
 
       <main id="note-form">
         <form>
           <section data-section="service-type">
             <h2>Service Type</h2>
-            <select id="service-type" name="service-type">
-              <option value="internet-installation" selected>
-                Internet Installation
-              </option>
-              <option value="service-change">Service Change</option>
-              <option value="service-request">Service Request</option>
-            </select>
+            <div class="bore-inline">
+              <label class="bore-label" for="service-type">Service Type:</label>
+              <select id="service-type" name="service-type">
+                <option value="internet-installation" selected>
+                  Internet Installation
+                </option>
+                <option value="service-change">Service Change</option>
+                <option value="service-request">Service Request</option>
+              </select>
+            </div>
           </section>
 
           <section data-section="work-codes">
             <h2>Work Codes</h2>
-
             <fieldset id="codes-all">
               <div class="codes-container">
                 <div class="codes-normal">
@@ -158,7 +160,7 @@
                       name="BXT_qty"
                       min="1"
                       max="10"
-                      value="1"
+                      value="0"
                       disabled
                     />
                   </label>
@@ -175,7 +177,7 @@
                       name="TBXT_qty"
                       min="1"
                       max="10"
-                      value="1"
+                      value="0"
                       disabled
                     />
                   </label>
@@ -186,7 +188,7 @@
                       name="WF_qty"
                       min="1"
                       max="10"
-                      value="1"
+                      value="0"
                       disabled
                     />
                   </label>
@@ -201,37 +203,151 @@
 
           <section data-section="drop-info">
             <h2>Drop Information</h2>
-            <label for="terminal-drop">Terminal drop length:</label>
-            <input
-              type="number"
-              id="terminal-drop"
-              name="terminal-drop"
-              placeholder="0"
-              min="0"
-              max="2508"
-            />
 
-            <label for="house-drop">House box drop length:</label>
-            <input
-              type="number"
-              id="house-drop"
-              name="house-drop"
-              placeholder="0"
-              min="0"
-            />
+            <div class="bore-inline">
+              <label class="bore-label" for="terminal-drop"
+                >Terminal drop length:</label
+              >
+              <input
+                type="number"
+                id="terminal-drop"
+                name="terminal-drop"
+                placeholder="0"
+                min="0"
+                max="2508"
+              />
+            </div>
+            <span class="error-message" id="terminal-drop-error"></span>
+
+            <div class="bore-inline">
+              <label class="bore-label" for="house-drop"
+                >House box drop length:</label
+              >
+              <input
+                type="number"
+                id="house-drop"
+                name="house-drop"
+                placeholder="0"
+                min="0"
+              />
+            </div>
+            <span class="error-message" id="house-drop-error"></span>
+
+            <div id="drop-extra-container" class="hidden">
+              <div class="bore-inline">
+                <label class="bore-label" for="drop-type">Drop type:</label>
+                <select id="drop-type" name="drop-type">
+                  <option value="underground" selected>Underground</option>
+                  <option value="aerial">Aerial</option>
+                </select>
+              </div>
+
+              <div class="bore-inline">
+                <label
+                  class="bore-label"
+                  id="drop-location-label"
+                  for="drop-location"
+                  >Flowerpot location:</label
+                >
+                <select id="drop-location" name="drop-location">
+                  <option value="front right" selected>Front right</option>
+                  <option value="front left">Front left</option>
+                  <option value="front">Front</option>
+                  <option value="right">Right</option>
+                  <option value="left">Left</option>
+                  <option value="back right">Back right</option>
+                  <option value="back left">Back left</option>
+                  <option value="back">Back</option>
+                </select>
+              </div>
+
+              <div class="bore-inline">
+                <label class="bore-label" for="house-box-location"
+                  >House box location:</label
+                >
+                <select id="house-box-location" name="house-box-location">
+                  <option value="back" selected>Back</option>
+                  <option value="right">Right</option>
+                  <option value="left">Left</option>
+                  <option value="front">Front</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="bore-required-container" class="hidden">
+              <div class="bore-inline">
+                <label class="bore-label">Bore required?</label>
+                <div class="bore-options">
+                  <label
+                    ><input
+                      type="radio"
+                      name="bore-required"
+                      value="no"
+                      checked
+                    />
+                    No</label
+                  >
+                  <label
+                    ><input type="radio" name="bore-required" value="yes" />
+                    Yes</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div id="bore-type-container" class="hidden">
+              <div class="bore-inline">
+                <label class="bore-label">Bore type?</label>
+                <div class="bore-options">
+                  <label
+                    ><input
+                      type="radio"
+                      name="bore-type"
+                      value="driveway"
+                      checked
+                    />
+                    Driveway</label
+                  >
+                  <label
+                    ><input type="radio" name="bore-type" value="sidewalk" />
+                    Sidewalk</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div id="bore-length-container" class="hidden">
+              <div class="bore-inline">
+                <label class="bore-label" for="bore-length"
+                  >Bore length (ft):</label
+                >
+                <input
+                  type="number"
+                  id="bore-length"
+                  name="bore-length"
+                  placeholder="0"
+                  min="1"
+                  max="99"
+                />
+              </div>
+            </div>
+            <span class="error-message" id="bore-length-error"></span>
           </section>
 
           <section data-section="customer-info">
             <h2>Customer Contact</h2>
-            <label for="contact-time">Contact time:</label>
-            <input
-              type="number"
-              id="contact-time"
-              name="contact-time"
-              placeholder="hhmm (24h)"
-              min="0"
-              max="2359"
-            />
+            <div class="bore-inline">
+              <label class="bore-label" for="contact-time">Contact time:</label>
+              <input
+                type="number"
+                id="contact-time"
+                name="contact-time"
+                placeholder="hhmm (24h)"
+                min="0"
+                max="2359"
+              />
+            </div>
+            <span class="error-message" id="contact-time-error"></span>
           </section>
 
           <section data-section="extra-note">
@@ -262,6 +378,112 @@
           </section>
         </form>
       </main>
+      <!-- Code Table Modal -->
+      <div id="code-table-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+          <button id="close-modal" class="close-button">&times;</button>
+          <h2>Work Code Table</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>NDI</td>
+                <td>NEW CUSTOMER HIGH SPEED DATA INSTALLATION</td>
+              </tr>
+              <tr>
+                <td>A01</td>
+                <td>INSTALLATION OR RELOCATION OF AN ADDITIONAL OUTLET</td>
+              </tr>
+              <tr>
+                <td>A02</td>
+                <td>INSTALLATION OR RELOCATION OF AN ADDITIONAL OUTLET</td>
+              </tr>
+              <tr>
+                <td>DDC1</td>
+                <td>DIFFICULT DROP CHARGE (&gt;4.5HRS &amp; &lt;6HRS)</td>
+              </tr>
+              <tr>
+                <td>DDC2</td>
+                <td>DIFFICULT DROP CHARGE (&gt;6HRS)</td>
+              </tr>
+              <tr>
+                <td>DG</td>
+                <td>DOWNGRADE OF ANY SERVICE</td>
+              </tr>
+              <tr>
+                <td>DU</td>
+                <td>EXISTING CUSTOMER SPEED DATA UPGRADE</td>
+              </tr>
+              <tr>
+                <td>ER</td>
+                <td>STB OR INDOOR ONT EQUIPMENT RETRIEVAL</td>
+              </tr>
+              <tr>
+                <td>MDU1</td>
+                <td>INSTALL OF SINGLE SERVICE IN A PRE-WIRED MDU</td>
+              </tr>
+              <tr>
+                <td>MDU2</td>
+                <td>INSTALL OF TWO SERVICES IN A PRE-WIRED MDU</td>
+              </tr>
+              <tr>
+                <td>NTI</td>
+                <td>NEW CUSTOMER TELEPHONE INSTALLATION</td>
+              </tr>
+              <tr>
+                <td>OR</td>
+                <td>OUTDOOR ONT RETRIEVAL</td>
+              </tr>
+              <tr>
+                <td>OS</td>
+                <td>ONT SWAP OUT</td>
+              </tr>
+              <tr>
+                <td>S-BORE</td>
+                <td>SIDEWALK BORE PER FOOT</td>
+              </tr>
+              <tr>
+                <td>TC</td>
+                <td>BASIC REPAIR</td>
+              </tr>
+              <tr>
+                <td>TCI</td>
+                <td>TRIP CHARGE</td>
+              </tr>
+              <tr>
+                <td>TU</td>
+                <td>EXISTING CUSTOMER TELEPHONE UPGRADE</td>
+              </tr>
+              <tr>
+                <td>2SNI</td>
+                <td>TWO SERVICE NEW INSTALLATION</td>
+              </tr>
+              <tr>
+                <td>SUNDAYWORK</td>
+                <td>SUNDAY WORK</td>
+              </tr>
+              <tr>
+                <td>BXT</td>
+                <td>EXTENDER</td>
+              </tr>
+              <tr>
+                <td>TBXT</td>
+                <td>EXTENDER (SERVICE CHANGE ONLY)</td>
+              </tr>
+              <tr>
+                <td>WF</td>
+                <td>WALLFISH (SDU)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+    <script type="module" src="../scripts/main.js"></script>
   </body>
 </html>

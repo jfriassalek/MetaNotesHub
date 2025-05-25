@@ -41,3 +41,43 @@ otra cosa que no se si se valida en el html o js es que quiero que la casilla pa
 Bueno eso sería por el momento en el HTML. Pasemos al CSS
 Quiero que vos agregues los estilos que creas mejor para esta página, no se si tenes que preguntar algo para decidir los colores, etc.
 Además quiero que también esté lo más optimizado posible, que todo esté en el centro de la página y además que esté por defecto como en tema oscuro.
+
+-----SCRIPTS-----
+lo primero que quiero es que cuando el service type está seleccionado en internet installation se puedan seleccionar todos los códigos menos:
+TU
+DU
+DG
+ER
+OR
+OS
+TC
+TBXT
+
+lo siguiente, cuando seleccione los códigos que se puede modificar la cantidad, que se habiliten los campos donde se inserta la cantidad y que pueda poner solo números del 1 al 10
+ahorita el valor que está por defecto es 0, cuando se seleccionen que se cambie automáticamente a 1
+
+Cuando se haga clic en el botón view code table que se muestre en una ventana emergente la tabla adjunta. Considerar que debe ser adaptativa para celulares y tiene que tener un botón de cerrar la ventana o si se hace clic afuera de la ventana que se cierre también
+
+perfecto, ahora; vamos con la parte de drop information:
+terminal drop length y house box drop length tienen que ser números múltiplos de 3, desde 0 a 2508.
+terminal drop length tiene que ser mayor o igual a house box drop length
+si se pone un valor en terminal drop length que se habilite un input abajo de house box drop length que se llame "bore require". Tiene que ser 2 radial button "no" (por defecto) y "si"
+ahora, si se selecciona "si", que aparezca como lo de bore required pero que sea "bore type"  las opciones sean "driveway"(por defecto) y "sidewalk"
+para terminar por el momento, también si  se pone un valor en terminal drop length quiero que se muestren 3 inputs de lista desplegable arriba del bore required:
+- drop type: "underground" (por defecto) y "aerial"
+- [] location: dentro del [] es variable, si se selecciona "underground" tiene que decir flowerpot y si se selecciona "aerial" tiene que decir pole. Las opciones son:
+"front right" por defecto
+front left
+front
+right
+left
+back right
+back left
+back
+- house box location donde las opciones son:
+back (por defecto)
+right
+left
+back
+
+una cosa más que me estaba olvidando: cuando se seleccion "yes" en bore required, además del bore type se tiene que mostrar "bore legth (ft)" con el placeholder 1 y solo tienen que poder ponerse números de hasta 2 caracteres (entre 1 y 99) 
