@@ -106,3 +106,16 @@ creo que con eso cerramos internet installations, ahora pasemos a Service Change
 Cuando está en Service Change se pueden seleccionar todos los códigos, menos BXT.
 Cuando se selecciona TBXT tiene que aparecer arriba de drop information un input como el de BXT, dependiendo la cantidad de tbxt que se seleccionen
 
+No se puede seleccionar BXT sin antes haber seleccionado NDI o 2SNI
+No se puede seleccionar NDI y 2SNI al mismo tiempo
+
+que entre NDI, 2SNI, MDU1, MDU2, NTI solo se pueda seleccionar uno a la vez
+
+vamos con el tema del bxt, se tiene que mostrar cuando se seleccione, sin importar los códigos que estén seleccionados
+
+ahora se está mostrando solo con el NDI, quiero que también se muestre si está seleccionado cualquiera estos: NDI, 2SNI, MDU1, MDU2, NTI
+
+Ahora, si está seleccionado solo o con cualquier otro código quiero que se muestre en una sección diferente, el solo
+
+-- GENERACIÓN DE NOTAS --
+

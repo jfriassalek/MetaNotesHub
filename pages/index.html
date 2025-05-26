@@ -42,6 +42,15 @@
                     ><input id="NDI" type="checkbox" name="codes" value="NDI" />
                     NDI</label
                   >
+                  <label for="2SNI"
+                    ><input
+                      id="2SNI"
+                      type="checkbox"
+                      name="codes"
+                      value="2SNI"
+                    />
+                    2SNI</label
+                  >
                   <label for="A01"
                     ><input id="A01" type="checkbox" name="codes" value="A01" />
                     A01</label
@@ -49,24 +58,6 @@
                   <label for="A02"
                     ><input id="A02" type="checkbox" name="codes" value="A02" />
                     A02</label
-                  >
-                  <label for="DDC1"
-                    ><input
-                      id="DDC1"
-                      type="checkbox"
-                      name="codes"
-                      value="DDC1"
-                    />
-                    DDC1</label
-                  >
-                  <label for="DDC2"
-                    ><input
-                      id="DDC2"
-                      type="checkbox"
-                      name="codes"
-                      value="DDC2"
-                    />
-                    DDC2</label
                   >
                   <label for="DG"
                     ><input id="DG" type="checkbox" name="codes" value="DG" />
@@ -119,6 +110,15 @@
                     />
                     S-BORE</label
                   >
+                  <label for="SUNDAY"
+                    ><input
+                      id="SUNDAY"
+                      type="checkbox"
+                      name="codes"
+                      value="SUNDAY"
+                    />
+                    SUNDAY</label
+                  >
                   <label for="TC"
                     ><input id="TC" type="checkbox" name="codes" value="TC" />
                     TC</label
@@ -131,24 +131,6 @@
                     ><input id="TU" type="checkbox" name="codes" value="TU" />
                     TU</label
                   >
-                  <label for="2SNI"
-                    ><input
-                      id="2SNI"
-                      type="checkbox"
-                      name="codes"
-                      value="2SNI"
-                    />
-                    2SNI</label
-                  >
-                  <label for="SUNDAYWORK"
-                    ><input
-                      id="SUNDAYWORK"
-                      type="checkbox"
-                      name="codes"
-                      value="SUNDAYWORK"
-                    />
-                    SUNDAYWORK</label
-                  >
                 </div>
 
                 <div class="codes-quantity">
@@ -158,23 +140,6 @@
                     <input
                       type="number"
                       name="BXT_qty"
-                      min="1"
-                      max="10"
-                      value="0"
-                      disabled
-                    />
-                  </label>
-                  <label for="TBXT">
-                    <input
-                      id="TBXT"
-                      type="checkbox"
-                      name="codes"
-                      value="TBXT"
-                    />
-                    TBXT
-                    <input
-                      type="number"
-                      name="TBXT_qty"
                       min="1"
                       max="10"
                       value="0"
@@ -240,12 +205,16 @@
           </section>
 
           <section
-            id="tbxt-section"
+            id="solo-bxt-section"
             class="hidden section-box"
-            data-section="tbxt-info"
+            data-section="solo-bxt-info"
           >
-            <h2 class="section-title">TBXT Locations</h2>
-            <div id="tbxt-location-container" class="bore-column"></div>
+            <h2 class="section-title">Extender Location</h2>
+            <div id="solo-bxt-location-container" class="bore-column"></div>
+            <div
+              id="solo-bxt-location-container"
+              class="bore-column hidden"
+            ></div>
           </section>
 
           <section data-section="drop-info">
@@ -441,20 +410,16 @@
                 <td>NEW CUSTOMER HIGH SPEED DATA INSTALLATION</td>
               </tr>
               <tr>
+                <td>2SNI</td>
+                <td>TWO SERVICE NEW INSTALLATION</td>
+              </tr>
+              <tr>
                 <td>A01</td>
-                <td>INSTALLATION OR RELOCATION OF AN ADDITIONAL OUTLET</td>
+                <td>INSTALLATION OR RELOCATION OFN AN ADITTIONAL OUTLET</td>
               </tr>
               <tr>
                 <td>A02</td>
-                <td>INSTALLATION OR RELOCATION OF AN ADDITIONAL OUTLET</td>
-              </tr>
-              <tr>
-                <td>DDC1</td>
-                <td>DIFFICULT DROP CHARGE (&gt;4.5HRS &amp; &lt;6HRS)</td>
-              </tr>
-              <tr>
-                <td>DDC2</td>
-                <td>DIFFICULT DROP CHARGE (&gt;6HRS)</td>
+                <td>INSTALLATION OR RELOCATION OFN AN ADITTIONAL OUTLET</td>
               </tr>
               <tr>
                 <td>DG</td>
@@ -462,11 +427,11 @@
               </tr>
               <tr>
                 <td>DU</td>
-                <td>EXISTING CUSTOMER SPEED DATA UPGRADE</td>
+                <td>EXISTING CUSTOMER HIGH SPEED DATA UPGRADE</td>
               </tr>
               <tr>
                 <td>ER</td>
-                <td>STB OR INDOOR ONT EQUIPMENT RETRIEVAL</td>
+                <td>STB OT INDOR ONT EQUIPMENT RETRIEVAL</td>
               </tr>
               <tr>
                 <td>MDU1</td>
@@ -474,7 +439,7 @@
               </tr>
               <tr>
                 <td>MDU2</td>
-                <td>INSTALL OF TWO SERVICES IN A PRE-WIRED MDU</td>
+                <td>INSTALL OF TWO SERVICE IN A PRE-WIRED MDU</td>
               </tr>
               <tr>
                 <td>NTI</td>
@@ -482,7 +447,7 @@
               </tr>
               <tr>
                 <td>OR</td>
-                <td>OUTDOOR ONT RETRIEVAL</td>
+                <td>OUTDOOR OR RETRIEVAL</td>
               </tr>
               <tr>
                 <td>OS</td>
@@ -491,6 +456,10 @@
               <tr>
                 <td>S-BORE</td>
                 <td>SIDEWALK BORE PER FOOT</td>
+              </tr>
+              <tr>
+                <td>SUNDAY</td>
+                <td>CH SUNDAYWORK</td>
               </tr>
               <tr>
                 <td>TC</td>
@@ -502,27 +471,15 @@
               </tr>
               <tr>
                 <td>TU</td>
-                <td>EXISTING CUSTOMER TELEPHONE UPGRADE</td>
-              </tr>
-              <tr>
-                <td>2SNI</td>
-                <td>TWO SERVICE NEW INSTALLATION</td>
-              </tr>
-              <tr>
-                <td>SUNDAYWORK</td>
-                <td>SUNDAY WORK</td>
+                <td>EXISITING CUSTOMER TELEPHONE UPGRADE</td>
               </tr>
               <tr>
                 <td>BXT</td>
                 <td>EXTENDER</td>
               </tr>
               <tr>
-                <td>TBXT</td>
-                <td>EXTENDER (SERVICE CHANGE ONLY)</td>
-              </tr>
-              <tr>
                 <td>WF</td>
-                <td>WALLFISH (SDU)</td>
+                <td>WALLFISH</td>
               </tr>
             </tbody>
           </table>

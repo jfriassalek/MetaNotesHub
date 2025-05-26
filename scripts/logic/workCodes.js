@@ -1,13 +1,16 @@
-const quantityCodes = ["BXT", "TBXT", "WF"];
+// logic/workCodes.js
+
+const quantityCodes = ["BXT", "WF"];
 
 export function setupWorkCodes() {
   quantityCodes.forEach((code) => {
     const checkbox = document.getElementById(code);
     if (!checkbox) return;
 
-    checkbox.addEventListener("change", () =>
-      handleQuantityCheckboxChange(checkbox)
-    );
+    checkbox.addEventListener("change", () => {
+      handleQuantityCheckboxChange(checkbox);
+      updateExtenders(); // force update on toggle
+    });
 
     const input = checkbox.parentElement.querySelector(`input[type="number"]`);
     if (input) {
@@ -15,68 +18,79 @@ export function setupWorkCodes() {
     }
   });
 
+  // === NDI - 2SNI ===
+  const codes = ["NDI", "2SNI", "MDU1", "MDU2", "NTI"];
+  const checkboxes = codes
+    .map((code) => document.getElementById(code))
+    .filter(Boolean);
+
+  checkboxes.forEach((current) => {
+    current.addEventListener("change", () => {
+      if (current.checked) {
+        checkboxes.forEach((other) => {
+          if (other !== current) other.checked = false;
+        });
+      }
+      updateExtenders();
+    });
+  });
+
   setupExtenderLocations();
-  setupTbxtLocations();
 }
 
-// === Extender Location (NDI + BXT) ===
+// === Extender Location ===
+let updateExtenders; // forward declaration
+
 function setupExtenderLocations() {
-  const ndiCheckbox = document.getElementById("NDI");
+  const extenderCodes = ["NDI", "2SNI", "MDU1", "MDU2", "NTI"];
+  const extenderCheckboxes = extenderCodes
+    .map((code) => document.getElementById(code))
+    .filter(Boolean);
   const bxtCheckbox = document.getElementById("BXT");
   const bxtInput =
     bxtCheckbox?.parentElement.querySelector(`input[type="number"]`);
+
   const extenderContainer = document.getElementById(
     "extender-location-container"
   );
+  const soloBxtContainer = document.getElementById(
+    "solo-bxt-location-container"
+  );
+  const soloBxtSection = document.getElementById("solo-bxt-section");
 
-  function updateExtenders() {
+  // Render extender fields depending on selected codes
+  updateExtenders = function () {
     extenderContainer.innerHTML = "";
+    soloBxtContainer.innerHTML = "";
 
-    const count = parseInt(bxtInput.value, 10);
-    const show = ndiCheckbox.checked && bxtCheckbox.checked && count > 0;
+    extenderContainer.classList.add("hidden");
+    soloBxtSection.classList.add("hidden");
 
-    extenderContainer.classList.toggle("hidden", !show);
+    const count = parseInt(bxtInput?.value, 10);
+    const extenderSelected = extenderCheckboxes.some((cb) => cb.checked);
+    const show = bxtCheckbox.checked && count > 0;
+
     if (!show) return;
 
-    for (let i = 1; i <= count; i++) {
-      extenderContainer.appendChild(
-        createLabeledInput(`Extender Location ${i}:`)
-      );
-    }
-  }
+    const target = extenderSelected ? extenderContainer : soloBxtContainer;
+    const targetSection = extenderSelected ? extenderContainer : soloBxtSection;
+    targetSection.classList.remove("hidden");
 
-  ndiCheckbox.addEventListener("change", updateExtenders);
+    for (let i = 1; i <= count; i++) {
+      target.appendChild(createLabeledInput(`Extender Location ${i}:`));
+    }
+  };
+
+  extenderCheckboxes.forEach((cb) =>
+    cb.addEventListener("change", updateExtenders)
+  );
   bxtCheckbox.addEventListener("change", updateExtenders);
   bxtInput.addEventListener("input", updateExtenders);
+
+  updateExtenders();
 }
 
-// === TBXT Dynamic Inputs ===
-function setupTbxtLocations() {
-  const tbxtCheckbox = document.getElementById("TBXT");
-  const tbxtInput =
-    tbxtCheckbox?.parentElement.querySelector(`input[type="number"]`);
-  const tbxtContainer = document.getElementById("tbxt-location-container");
-  const tbxtSection = document.getElementById("tbxt-section");
-
-  function updateTbxt() {
-    tbxtContainer.innerHTML = "";
-
-    const count = parseInt(tbxtInput.value, 10);
-    const show = tbxtCheckbox.checked && count > 0;
-
-    tbxtSection.classList.toggle("hidden", !show);
-    if (!show) return;
-
-    for (let i = 1; i <= count; i++) {
-      tbxtContainer.appendChild(createLabeledInput(`TBXT Location ${i}:`));
-    }
-  }
-
-  tbxtCheckbox.addEventListener("change", updateTbxt);
-  tbxtInput.addEventListener("input", updateTbxt);
-}
-
-// === Shared Utility ===
+// Enable or disable quantity inputs and trigger UI update
 function handleQuantityCheckboxChange(checkbox) {
   const input = checkbox.parentElement.querySelector(`input[type="number"]`);
   if (!input) return;
@@ -88,6 +102,9 @@ function handleQuantityCheckboxChange(checkbox) {
     input.disabled = true;
     input.value = 0;
   }
+
+  // trigger UI update immediately
+  updateExtenders();
 }
 
 function enforceQuantityLimits(event) {
@@ -97,6 +114,8 @@ function enforceQuantityLimits(event) {
 
   if (value < 1) input.value = 1;
   if (value > 10) input.value = 10;
+
+  updateExtenders(); // force refresh
 }
 
 function createLabeledInput(labelText) {
