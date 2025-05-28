@@ -119,3 +119,22 @@ Ahora, si está seleccionado solo o con cualquier otro código quiero que se mue
 
 -- GENERACIÓN DE NOTAS --
 
+Vamos a comenzar con la generación de notas, comencemos por lo siguiente:
+Al hacer clic en el botón generate note Se deben listar los códigos seleccionados además de añadir un código más dependiendo de la longitud total del drop (terminal drop length - house box drop length). Los códigos que se deben adicionar son los siguiente:
+D1	UP TO 200FT
+D2	201FT - 400FT
+D3	401FT - 600FT
+D4	601FT - 800FT
+D5	801FT - 1000FT
+D6	1001FT - 1200FT
+D7	1201FT - 1400FT
+D8	1401FT - 1600FT
+D9	1601FT - 1800FT
+D10	1801FT - 2000FT
+D11	2001FT - 2200FT
+D12	2201FT - 2400FT
+D13	2401FT - 2600FT
+D14	2601FT - 2800FT
+D15	OVER 2801FT
+Creo que debemos crear un nuevo documento no?
+

@@ -38,7 +38,7 @@ export function setupFieldValidations() {
 
     clearError(fieldId);
 
-    if (!isNaN(value) && value % 3 !== 0) {
+    if (!isNaN(value) && value % 3 !== 0 && value % 2 !== 0) {
       showError(fieldId, "Invalid value.");
       return;
     }
